@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('_head') %>
+    <title>Form</title>
+</head>
+<body data-ng-app="angular_app">
+    <div class="container ">
+        <h3 style="text-align: center;">Insert Employees</h3>
+        <div style="text-align: center;" class="w-75" >
+<!--  -->
+            <form action="/employee/add" class="form-control m-2 p-3" method="post">
+
+                <input class="form-control m-2" type="text" placeholder="name" name="username" id="username" required/>
+                <input class="form-control m-2" type="email" placeholder="test@domain.com" name="email" id="email" required/>
+                <button type="submit" class="btn btn-outline-secondary m-2">Upload</button>
+            </form>
+        </div>
+    </div>
+    <!-- <h1>Hide the Div: <input type="checkbox" ng-model="c_box"></h1>
+
+    <div ng-hide="c_box" class="p-5 bg-info"></div>
+
+    <%- include('./angular/_angular_app') %>
+     -->
+</body>
+</html>

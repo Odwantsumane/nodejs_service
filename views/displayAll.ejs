@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('_head') %>
+    <title>DisplayAll</title>
+</head>
+<!-- angular_app2 data-ng-controller="databaseController" -->
+<body ng-app="angular_app2" data-ng-controller="databaseController" ng-init="data='<%= db %>'">
+    <h2 style="text-align: center;" class="m-2">Employee Details</h2>
+    <div class="container">
+        <% if (success) { %> 
+            <div class="bg-success" style="text-align: center; color: white;"><%= success %></div>
+        <% } %>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email Address</th>
+                    <th>Country</th>
+                    <th>Continent</th>
+                    <th>Race</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% db.forEach(data => { %>
+                <tr>
+                    <td><%= data.username %></td>
+                    <td><%= data.email %></td>
+                    <td><%= data.country %></td>
+                    <td><%= data.continent %></td>
+                    <td><%= data.race %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <div style="text-align: center;">
+        <a href="/" class=" btn btn-outline-secondary m-2">Home</a>
+        <a href="/employee/add" class=" btn btn-outline-info m-2">Add Employee</a>
+    </div>
+    
+    <%- include('./angular/_angular_app2') %>
+</body>
+</html>
