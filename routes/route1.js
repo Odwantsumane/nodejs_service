@@ -26,7 +26,7 @@ router.post("/add", (req, res) => {
         "country": req.body.country,
         "continent":  req.body.continent,
         "race": req.body.race,
-        "empTodos": req.body.todos
+        "empTodos": req.body.empTodos
     }
     
     try {
