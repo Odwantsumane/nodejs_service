@@ -26,7 +26,9 @@ router.post("/add", (req, res) => {
         "country": req.body.country,
         "continent":  req.body.continent,
         "race": req.body.race,
-        "empTodos": req.body.empTodos
+        "empTodos": req.body.empTodos,
+        "createdAt": Date.now(),
+        "allCompletedAt": 0,
     }
     
     try {
@@ -54,6 +56,33 @@ router.post("/addXml", (req, res) => {
             
     } catch (err) {
         res.status(500).json({ message: err });
+    }
+})
+
+router.put("/update/:employeeId", (req,res) => {
+    const toSearch = (employee) => employee.id === req.params.employeeId;
+
+    try {
+        // update
+        DB[DB.findIndex(toSearch)].allCompletedAt =  Date.now();
+        
+    } catch (err) {
+        res.status(500).json({ message: err })
+    }
+})
+
+router.put("/updateTodoStatus/:todoId", (req,res) => {
+
+    const todoPosition = parseInt(req.params.todoId.substring(req.params.todoId.length - 1, 
+        req.params.todoId.length));
+    const toSearch = (employee) => employee.id === req.params.todoId.substring(0, value.length - 1);
+    
+    try {
+        // update todo status
+        DB[DB.findIndex(toSearch)].empTodos[todoPosition] =  req.body.done;
+        
+    } catch (err) {
+        res.status(500).json({ message: err })
     }
 })
 
