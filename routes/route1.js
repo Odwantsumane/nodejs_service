@@ -72,18 +72,23 @@ router.put("/update/:employeeId", (req,res) => {
 })
 
 router.put("/updateTodoStatus/:todoId", (req,res) => {
-
-    const todoPosition = parseInt(req.params.todoId.substring(req.params.todoId.length - 1, 
-        req.params.todoId.length));
-    const toSearch = (employee) => employee.id === req.params.todoId.substring(0, value.length - 1);
+    let todoPosition;
+    let substr = req.params.todoId.substring(req.params.todoId.length - 1, 
+        req.params.todoId.length);
     
     try {
+        todoPosition = parseInt(substr);
+        const toSearch = (employee) => employee.id === req.params.todoId.substring(0, req.params.todoId.length - 1);
+
         // update todo status
-        DB[DB.findIndex(toSearch)].empTodos[todoPosition] =  req.body.done;
         
+        DB[DB.findIndex(toSearch)].empTodos[todoPosition - 1].done =  req.body.done;
+         
     } catch (err) {
         res.status(500).json({ message: err })
     }
+
+    res.json("updated sucessfully");
 })
 
  
